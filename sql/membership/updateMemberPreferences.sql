@@ -1,0 +1,27 @@
+-- add query here
+UPDATE salesforce.member__c
+SET	organisation__c = ${organisationId}, 
+	sportstgmemberaccount__c = ${accountId}, 
+	name = ${name},
+	firstname__c = ${firstName}, 
+	lastname__c = ${lastName}, 
+	salutation__c = ${salutation}, 
+	birthdate__c = ${dob}, 
+	email__c = json_extract_path_text(${emails}, 'email'),
+	mobilephone__c = ${mobilePhone}, 
+	homephone__c = ${homePhone}, 
+	phone__c = ${otherPhone}, 
+	hasoptedoutoffax__c = ${hasOptedOutOfFax}, 
+	hasoptedoutofemail__c = ${recieveClubAnnc}, 
+	donotcall__c = ${contactByPhone}, 
+	mailingstreet__c = json_extract_path_text(${mailingAddr}, 'street'), 
+	mailingcity__c = json_extract_path_text(${mailingAddr}, 'suburb'), 
+	mailingpostalcode__c = json_extract_path_text(${mailingAddr}, 'postalCode'), 
+	mailingstate__c = json_extract_path_text(${mailingAddr}, 'state'), 
+	mailingcountry__c = json_extract_path_text(${mailingAddr}, 'country'), 
+	otherstreet__c = json_extract_path_text(${otherAddr}, 'street'), 
+	othercity__c = json_extract_path_text(${otherAddr}, 'suburb'), 
+	otherstate__c = json_extract_path_text(${otherAddr}, 'state'), 
+	otherpostalcode__c = json_extract_path_text(${otherAddr}, 'postalCode'),
+	othercountry__c = json_extract_path_text(${otherAddr}, 'country') 
+WHERE  herokuid__c =  ${membershipId}

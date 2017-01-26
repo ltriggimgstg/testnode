@@ -1,0 +1,69 @@
+[
+  {
+    "value": "Ashmore and Cartier Islands",
+    "label": "Ashmore and Cartier Islands"
+  },
+  {
+    "value": "Australian Antarctic Territory",
+    "label": "Australian Antarctic Territory"
+  },
+  {
+    "value": "ACT",
+    "label": "Australian Capital Territory"
+  },
+  {
+    "value": "CX",
+    "label": "Christmas Island"
+  },
+  {
+    "value": "CC",
+    "label": "Cocos Islands",
+    "alt": [
+      "Keeling Islands"
+    ]
+  },
+  {
+    "value": "Coral Sea Islands",
+    "label": "Coral Sea Islands"
+  },
+  {
+    "value": "HM",
+    "label": "Heard Island and McDonald Islands"
+  },
+  {
+    "value": "JBT",
+    "label": "Jervis Bay Territory"
+  },
+  {
+    "value": "NSW",
+    "label": "New South Wales"
+  },
+  {
+    "value": "NF",
+    "label": "Norfolk Island"
+  },
+  {
+    "value": "NT",
+    "label": "Northern Territory"
+  },
+  {
+    "value": "QLD",
+    "label": "Queensland"
+  },
+  {
+    "value": "SA",
+    "label": "South Australia"
+  },
+  {
+    "value": "TAS",
+    "label": "Tasmania"
+  },
+  {
+    "value": "VIC",
+    "label": "Victoria"
+  },
+  {
+    "value": "WA",
+    "label": "Western Australia"
+  }
+]

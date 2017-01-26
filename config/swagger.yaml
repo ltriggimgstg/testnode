@@ -1,0 +1,525 @@
+swagger: '2.0'
+info:
+  title: Membership API
+  description: Membership API definition - not complete
+  version: 1.0.0
+host: api.sportstg.com
+schemes:
+  - https
+basePath: /
+produces:
+  - application/json
+paths:
+  '/Account/{accountId}/Memberships':
+    parameters:
+      - name: accountId
+        in: path
+        description: User Account Id??
+        required: true
+        type: string
+        format: uuid
+    get:
+      summary: Needs clarification
+      x-swagger-response: any
+      description: Get list of memberships for a given Account Id??
+      responses:
+        '200':
+          description: An array of Memberships ??
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Membership'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  '/Account/{accountId}/Organisation/{organisationId}/RelatedMemberships':
+    get:
+      summary: Needs Clarification
+      x-swagger-response: any
+      description: Contacts related to the current Account Id.
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: string
+          format: uuid
+        - name: organisationId
+          in: path
+          required: true
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: response needs to be defined
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  '/Account/{accountId}/PersonalInfo':
+    parameters:
+      - name: accountId
+        in: path
+        required: true
+        type: string
+        format: uuid
+    get:
+      summary: Needs Clarification
+      description: Personal Info.
+      x-swagger-response: one
+      responses:
+        '200':
+          description: Profile information for a user?? response needs to be defined
+          schema:
+            $ref: '#/definitions/PersonalInfo'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Needs Clarification
+      x-swagger-response: one
+      description: Update the current Account?.
+      responses:
+        '200':
+          description: Profile information for a user?? response needs to be defined
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  '/Membership/{membershipId}/MemberPreferences':
+    parameters:
+      - name: membershipId
+        in: path
+        required: true
+        type: string
+        format: uuid
+    get:
+      x-swagger-response: one
+      summary: Get membership preferences for a given Membership Id.
+      description: Retrieves set of personal information, settings and preferences valid for the currently selected membership in a sports organisation.
+      responses:
+        '200':
+          description: essential subset of membership preferences for a given membershipId
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/MembershipPreferences'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      x-swagger-response: one
+      description: Updates membership preferences for a given Membership ID
+      responses:
+        '200':
+          description: To be defined
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/MembershipPreferences'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  '/Membership/{membershipId}/MemberCommsPreference':
+     parameters:
+      - name: membershipId
+        in: path
+        required: true
+        type: string
+        format: uuid
+        description: Id of the member whose preference is to be updated.
+     patch:
+      x-swagger-response: one
+      summary:  Set communications preferences for a given Member Id.
+      description: Set communications preferences for a given Member Id. Note that the context is the organisation linked to the member/ship.
+      responses:
+        '200':
+          description: as per http standard resulting updated membership preference object
+          schema:
+              $ref: '#/definitions/MembershipPreference'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  '/Membership/{membershipId}/MemberPrivPreference':
+    parameters:
+      - name: membershipId
+        in: path
+        required: true
+        type: string
+        format: uuid
+        description: Id of the member whose preference is to be updated.
+    patch:
+      x-swagger-response: one
+      summary:  Set public flag for membership information of a given Member Id.
+      description: Set public flag of membership information of a given Member Id Note that the context is the organisation linked to the membership.
+      responses:
+        '200':
+          description: as per http standard resulting updated membership preference object
+          schema:
+              $ref: '#/definitions/MembershipPreference'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  '/Membership/{membershipId}/MembershipHistory':
+      get:
+        x-swagger-response: any
+        summary: Needs Clarification
+        description: Get membership history for a given Membership ID
+        parameters:
+          - name: membershipId
+            in: path
+            required: true
+            type: string
+            format: uuid
+        responses:
+          '200':
+            description: To be defined
+            schema:
+              type: array
+              items:
+                $ref: '#/definitions/MembershipPreferences'
+          default:
+            description: Unexpected error
+            schema:
+              $ref: '#/definitions/Error'
+  '/Membership/{membershipId}/TransactionsHistory':
+      get:
+        summary: Needs Clarification
+        x-swagger-response: any
+        description: Get transactrion history for a given Membership ID
+        parameters:
+          - name: membershipId
+            in: path
+            required: true
+            type: string
+            format: uuid
+        responses:
+          '200':
+            description: '??'
+            schema:
+              type: array
+              items:
+                $ref: '#/definitions/MembershipPreferences'
+          default:
+            description: Unexpected error
+            schema:
+              $ref: '#/definitions/Error'
+  '/Organisation/{organisationId}/MembershipSubscription':
+      parameters:
+        - name: organisationId
+          in: path
+          required: true
+          type: string
+          format: uuid
+      x-schema: subscription
+      post:
+        summary: Needs Clarification
+        x-swagger-response: one
+        description: Adds a membership subscription??.
+        parameters:
+          - name: data
+            in: body
+            schema:
+              $ref: '#/definitions/Subscription'
+        responses:
+          '200':
+            description: Subscription information for the given user
+          default:
+            description: Unexpected error
+            schema:
+              $ref: '#/definitions/Error'
+  '/Organisation/{organisationId}/RegistrationForm':
+    parameters:
+      - name: organisationId
+        in: path
+        required: true
+        type: string
+        format: uuid
+    post:
+      summary: Needs Clarification
+      x-swagger-response: one
+      description: Creates a Registration Form??
+      responses:
+        '200':
+          description: To be defined
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  MemberSummaries:
+      type: array
+      items:
+        $ref: '#/definitions/MemberSummary'
+  MemberSummary:
+    type: object
+    description: short object with basic attributes of the person related by a membership.
+    properties:
+        organisationId:
+          type: string
+          format: uuid
+        memberId:
+          type: string
+          format: uuid
+        firstName:
+          type: string
+        lastName:
+          type: string
+        photoURL:
+          type: string
+  MembershipSummaries:
+    type: array
+    items:
+        $ref: '#/definitions/MembershipSummary'
+  MembershipSummary:
+    type: object
+    description: short objects with basic attributes describing the organisation that the membership is related to.
+    properties:
+      organisationId:
+        type: string
+        format: uuid
+      membershipId:
+        type: string
+        format: uuid
+      memberId:
+        type: string
+        format: uuid
+      orgSmLogoURL:
+          type: string
+          description: URL to a small logo of the organisation with the above Id
+      name:
+          type: string
+          minLength: 1
+          maxLength: 100
+          description: Short name of the Membership (such as organisation short name, location, membership type and period)
+      status:
+            type: string
+            description: Name of current and active status of the membership
+      startDate:
+          type: string
+          format: dateTime
+          description: This membership start date
+      endDate:
+          type: string
+          format: dataTime
+          description: This membership end date
+  Membership:
+    type: object
+    required:
+      - organisationId
+      - name
+      - memberId
+      - accountId
+    properties:
+      organisationId:
+        type: string
+        format: uuid
+        description: Id of Sports organisation which ownes this membership
+      accountId:
+        type: string
+        format: uuid
+        description: Id of the corresponding TG Platfrm account
+      membershipId:
+        type: string
+        format: uuid
+        description: Id of the membership as a unique key of this record
+      orgSmLogoURL:
+        type: string
+        description: URL to a small logo of the organisation with the above Id
+      name:
+        type: string
+        minLength: 1
+        maxLength: 100
+        description: Short name of the Membership (such as organisation short name, location, membership type and period)
+      sport:
+        type: string
+        format: uuid
+        description: Sport id
+      memberId:
+        type: string
+        format: uuid
+        description: MemberId, references a member
+      startDate:
+        type: string
+        format: dateTime
+        description: This membership start date
+      endDate:
+        type: string
+        format: dataTime
+        description: This membership end date
+      externalId:
+        type: string
+        description: Organisation's own Membership ID
+      parentMemberId:
+        type: string
+        format: uuid
+        description: Parent Membership Id throuh which this record was managed (if any) based on delegation of management of memberships.
+      status:
+        type: string
+        description: Name of current and active status of the membership
+  MembershipPreference:
+    description: long full version of member and all member preferences
+    type: object
+    required:
+      - organisationId
+      - membershipId
+    properties:
+      organisationId:
+        type: string
+        format: uuid
+      membershipId:
+        type: string
+        format: uuid
+      firstName:
+        type: string
+      lastName:
+        type: string
+      salutation:
+        type: string
+      nickname:
+        type: string
+      dob:
+        type: string
+        format: date
+        x-joi-minDate: now
+      emails:
+        type: array
+        items:
+          $ref: '#/definitions/Email'
+      mobilePhone:
+        type: string
+      homePhone:
+        type: string
+      otherPhone:
+        type: string
+      receiveMktg:
+        type: boolean
+        default: true
+      isProfilePublic:
+        type: boolean
+        default: true
+      contactByPhone:
+        type: boolean
+        default: false
+      photoURL:
+        type: string
+      mailingAddr:
+        $ref: '#/definitions/Address'
+      otherAddr:
+        $ref: '#/definitions/Address'
+      parentMemberId:
+          type: string
+          format: uuid
+          description: Parent Membership Id throuh which this record was managed (if any) based on delegation of management of memberships.
+  Email:
+    type: object
+    properties:
+      email:
+        type: string
+        format: email
+      isPreferred:
+        type: boolean
+  MembershipPreferences:
+    type: array
+    items:
+      $ref: '#/definitions/MembershipPreference'
+  PersonalInfo:
+    type: object
+    x-id: personalInfo
+    properties:
+      accountId:
+        type: string
+        format: uuid
+        description: Id of the corresponding TG Platfrm account. Unique identifier of this record.
+      firstName:
+        type: string
+      lastName:
+        type: string
+      shippingAddress:
+        $ref: '#/definitions/Address'
+      billingAddress:
+        $ref: '#/definitions/Address'
+      photoURL:
+        type: string
+      phone:
+        type: string
+  Address:
+    type: object
+    properties:
+        street:
+          type: string
+        suburb:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        long:
+          type: number
+        lat:
+          type: number
+        geoCodeAcc:
+          type: number
+  Subscription:
+    type: object
+    x-id: subscription
+    required:
+      - organisationId
+      - contactId
+    properties:
+      organisationId:
+        type: string
+        format: uuid
+      contactId:
+        type: string
+        format: uuid
+      parentId:
+        type: string
+        format: uuid
+      financialDate:
+        type: string
+        format: date
+      startDate:
+        type: string
+        format: dateTime
+      firstName:
+        type: string
+      lastName:
+        type: string
+      dob:
+        type: string
+        format: date
+        x-joi-minDate: now
+      ContactNumbers:
+        type: object
+        properties:
+          mobile:
+            type: string
+          home:
+            type: string
+      Email:
+        type: string
+        format: email
+      membershipType:
+        type: string
+      membershipRole:
+        type: string
+      paymentTxNo:
+        type: string
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string

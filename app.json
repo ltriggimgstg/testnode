@@ -1,0 +1,26 @@
+{
+  "name": "MembPOC",
+  "description": "Membership POC",
+  "repository": "https://github.com/imgstg/MembPOC",
+  "success_url": "/",
+  "scripts": {},
+  "env": {
+    "NODE_ENV": {
+      "description": "The application environment: development, staging, production",
+      "required": true,
+      "value": "staging"
+    },
+    "DATABASE_URL": {
+      "description": "The staging database URL",
+      "required": false,
+      "value": "postgres://vixgbkbdjfajll:zXwjl-ozgbLlwhVN6-YhiAvfZp@ec2-107-22-235-119.compute-1.amazonaws.com:5432/d8jdlf744mh4ot"
+    }
+  },
+  "formation": {},
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
